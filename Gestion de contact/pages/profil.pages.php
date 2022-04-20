@@ -1,5 +1,10 @@
 <?php
 session_start();
+$dbhost = "localhost";
+$dbuser = "root";
+$dbpass = "Badr@2001";
+$db = "ooplogin";
+$conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn -> error);
 
 ?>
 <!DOCTYPE html>
@@ -22,7 +27,7 @@ session_start();
 
 
 
-        <button href="../includes/logout.inc.php" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+        <a href="../includes/logout.inc.php" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</a>
       </div>
     </nav>
   </div>
@@ -31,23 +36,31 @@ session_start();
     <div class="main-body">
 
 
-
+    <?php
+            $id = $_SESSION["userid"];
+             $result = $conn->query("SELECT * FROM users WHERE users_id = $id "); 
+             ?>
       <div class="row gutters-sm">
         <div class="col-md-4 mb-3">
           <div class="card">
             <div class="card-body">
               <div class="d-flex flex-column align-items-center text-center">
                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                <?php while($contact = mysqli_fetch_array($result)) { ?>
                 <div class="mt-3">
-                  <h4>Badreddine Abourial</h4>
-                  <p class="text-secondary mb-1">Full Stack Developer</p>
-                  <p class="text-muted font-size-sm">Iziki el jadid,Marrakech, MA</p>
+                  <h4><?php echo $contact['users_uid'] ?></h4>
+                  <p class="text-secondary mb-1"><?php echo $contact['job_table'] ?></p>
+                  <p class="text-muted font-size-sm"><?php echo $contact['address_table'] ?></p>
+                  
+                  <p class="text-muted font-size-sm">Signup Date : <?php echo $contact['signup_date'] ?></p>
+                  <p class="text-muted font-size-sm">Last Login : <?= $_SESSION['login_date']?></p>
                   <!-- <button class="btn btn-primary">Follow</button>
                       <button class="btn btn-outline-primary">Message</button> -->
                 </div>
               </div>
             </div>
           </div>
+          <?php }?>
           <div class="card mt-3">
             <ul class="list-group list-group-flush">
               <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">

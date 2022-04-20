@@ -48,11 +48,10 @@ function validateInputes() {
 
     if(emailValue === ''){ 
         setError(email, 'username is required');
-    }else if(!isValidEmail(emailValue)){
-        setError(email,'Provide a valid email adress');
-    
-    }
-    else{
+    // }else if(!isValidEmail(emailValue)){
+    //     setError(email,'Provide a valid email adress');
+    // }
+    }else{
         setSuccess(email);
     }
 

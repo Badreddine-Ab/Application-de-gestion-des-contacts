@@ -43,7 +43,10 @@ $conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n".
     <div class="row">
         <div class="">
             <div class="people-nearby">
-            <?php $result = $conn->query("SELECT * FROM contact "); ?>
+            <?php
+            $id = $_SESSION["userid"];
+             $result = $conn->query("SELECT * FROM contact WHERE users_id = $id "); 
+             ?>
   
   <div class="nearby-user">
 <?php while($contact = mysqli_fetch_array($result)) { ?>

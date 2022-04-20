@@ -33,7 +33,7 @@
                     <div class="form-outline flex-fill mb-0">
                       <div class="error"></div>
                       <input id="Yourname" name="uid" type="text" id="form3Example1c" class="form-control" />
-                      <label class="form-label" for="form3Example1c">Your Name</label>
+                      <label class="form-label" for="form3Example1c">Your Full Name</label>
                     </div>
 
                   </div>
@@ -93,7 +93,7 @@
     </div>
   </section>
 
-  <!-- <script src="../scriptes/signup.js"></script> -->
+  <script src="../scriptes/signup.js"></script>
 </body>
 
 </html>

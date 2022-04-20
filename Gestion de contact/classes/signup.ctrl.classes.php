@@ -17,24 +17,24 @@
 
     public function signupUser() {
         if($this->emptyInput() == false){
-            header("location: ../pages/signup.php?error=emtyinput");
+            header("location: ../pages/signup.pages.php?error=emtyinput");
             exit();
         }
-        if($this->isValidUid() == false){
-            header("location: ../pages/signup.php?error=username");
-            exit();
-        }
+        // if($this->isValidUid() == false){
+        //     header("location: ../pages/signup.pages.php?error=username");
+        //     exit();
+        // }
         if($this->isValidUem() == false){
-            header("location: ../pages/signup.php?error=email");
+            header("location: ../pages/signup.pages.php?error=email");
             exit();
         }
 
         if($this->pwdMatch() == false){
-            header("location: ../pages/signup.php?error=passwordmatch");
+            header("location: ../pages/signup.pages.php?error=passwordmatch");
             exit();
         }
         if($this->uidTakenCheck() == false){
-                header("location: ../pages/signup.php?error=useroremailTaken");
+                header("location: ../pages/signup.pages.php?error=useroremailTaken");
                 exit();
         }
         $this->setUser($this->uid,$this->pwd,$this->uem);
@@ -50,15 +50,15 @@
         return $result;
     }
 
-    private function isValidUid() {
-        $result = true;
-        if(!preg_match("/^[a-zA-Z0-9]*$/", $this->uid)){
-            $result = false;
-        } else {
-            $result = true;
-        }
-        return $result;
-    }
+    // private function isValidUid() {
+    //     $result = true;
+    //     if(!preg_match("/^[a-zA-Z0-9]*$/", $this->uid)){
+    //         $result = false;
+    //     } else {
+    //         $result = true;
+    //     }
+    //     return $result;
+    // }
 
     private function isValidUem(){
         $result = true;

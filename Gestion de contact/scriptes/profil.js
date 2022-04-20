@@ -6,9 +6,9 @@ const fix = document.getElementById('fix');
 let badr = true;
 
 form.addEventListener('submit', e => {
-   
-        e.preventDefault();  
-        validateInputes()
+   if(!validateInputes()){
+    e.preventDefault(); 
+   }
     })  
 
 
@@ -38,13 +38,13 @@ function setSuccess(element){
 
 }
 
-function isValidFullName(fullName){
-    const res = /\d+\s[a-z]+/gi;
-    return res.test(String(fullName).toLowerCase());
-}
+// function isValidFullName(fullName){
+//     const res = /^[a-z\d]* [a-z\d]*/;
+//     return res.test(String(fullName).toLowerCase());
+// }
 
 function isValidPhoneNumber(phoneNumber){
-    const res = /(\+212|0)([ \-_/]*)(\d[ \-_/]*){9}/g;
+    const res = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/gim;
     return res.test(phoneNumber);
 }
 
@@ -65,29 +65,25 @@ function validateInputes() {
     if(fullNameValue === ''){ 
         console.log('a')
         setError(fullName, 'Full name is required');
-    }else if(!isValidFullName(fullName)){
-        console.log('b')
-        setError(fullName,'Provide your full name (ex: first name + last name)');
+        fullName.focus() ;
+    // }else if(!isValidFullName(fullName)){
+    //     console.log('b')
+    //     setError(fullName,'Provide your full name (ex: first name + last name)');
     }
-    else{
-        setSuccess(fullName);
-    }
+    // else if(jobValue === ''){
+    //     setSuccess(fullName);{
 
-    if(jobValue === ''){
-        setError(job,'A Job is required');
-    } else {
-        setSuccess(job);
-    }
-
-    if(phoneNumberValue === ''){
+    //     }
+    //     setError(job,'A Job is required');
+    else if(phoneNumberValue === ''){
+        
         setError(phoneNumber,'A Phone number is required');
-    } else if(!isValidPhoneNumber(phoneNumber)) {
+    } else if(!isValidPhoneNumber(phoneNumberValue)) {
         setError(phoneNumber,'Provid a moroccan phone number');
-    }
-
-    if(fixValue === ''){
+    }else if(fixValue === ''){
+        setSuccess(phoneNumberValue)
         setError(fix,'A Fix number is required');
-    } else if(!isValidPhoneNumber(fix)) {
+    } else if(!isValidPhoneNumber(fixValue)) {
         setError(fix,'Provid a moroccan fix phone number');
     }
 

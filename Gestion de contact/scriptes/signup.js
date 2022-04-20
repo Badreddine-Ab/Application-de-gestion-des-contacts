@@ -3,17 +3,22 @@ const email = document.getElementById('email');
 const password = document.getElementById('password');
 const Yourname = document.getElementById('Yourname');
 const password2 = document.getElementById('password2');
+let badr = true;
 
 
 
 form.addEventListener('submit', e => {
-    e.preventDefault();
-    validateInputes();
+    if(!validateInputes()){
+        e.preventDefault();
+    }
+    
+    
 })
 
 
 
 function setError(element,message){
+    badr = false;
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');
     
@@ -25,6 +30,7 @@ function setError(element,message){
 }
 
 function setSuccess(element){
+    badr = true;
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');
     
@@ -78,5 +84,7 @@ function validateInputes() {
     }else {
         setSuccess(password2);
     }
+
+    return badr;
 
 }

@@ -25,7 +25,7 @@ class Signup extends Dbh
 
         if (!$stmt->execute(array($uid, $uem))) {
             $stmt = null;
-            header("location: ../pages/signup.php?error=ststfailed");
+            header("location: ../pages/signup.pages.php?error=ststfailed");
             exit();
         }
 
